@@ -26,7 +26,7 @@ const addMemberSchema = Joi.object({
 });
 
 // Helper function to check family permissions
-const checkFamilyPermission = async (
+export const checkFamilyPermission = async (
   userId: number,
   familyId: number,
   requiredLevel: PermissionLevel = 'view'
@@ -41,7 +41,7 @@ const checkFamilyPermission = async (
     return false;
   }
 
-  const permissionLevels = { view: 1, edit: 2, admin: 3 };
+  const permissionLevels = { view: 1, edit: 2, admin: 3 } as const;
   const userLevel = permissionLevels[permissions[0].permission_level];
   const requiredLevelNum = permissionLevels[requiredLevel];
 
